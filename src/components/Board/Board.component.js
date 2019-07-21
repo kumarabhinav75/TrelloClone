@@ -21,6 +21,10 @@ class Board extends Component {
         return (
             <div className="board-container">
                 {this.renderBoard(boardData)}
+                <div>
+                    <input type="text" placeholder="Enter new list name..." className="list-input"></input>
+                    <button className="newlist-button">New List</button>
+                </div>
             </div>
         )
     }
