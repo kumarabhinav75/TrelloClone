@@ -4,7 +4,7 @@ import Board from '../components/Board/Board.component'
 
 const mapStateToProps = state => ({
     cardData: state.cards,
-    listNames: state.list
+    listNames: state.lists
 })
 
 const mapDispatchToProps = dispatch => ({

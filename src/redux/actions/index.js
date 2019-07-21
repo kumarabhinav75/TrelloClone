@@ -5,8 +5,5 @@ export const addList = listName => ({
 
 export const addCard = (payload) => ({
     type: 'ADD_CARD',
-    payload: {
-        cardText,
-        listNo
-    }
+    payload
 })
