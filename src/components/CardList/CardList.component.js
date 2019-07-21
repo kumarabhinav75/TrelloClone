@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from '../Card/Card.component';
+import './CardList.css'
 
 class CardList extends Component {
     constructor(props){
@@ -8,7 +9,7 @@ class CardList extends Component {
 
     renderCards(cards){
         return cards.map((card) => {
-            <Card card={card} />
+            return <Card card={card} />
         })
     }
 
@@ -16,7 +17,12 @@ class CardList extends Component {
         const {list} = this.props;
         console.log('yooo');
         console.log(list.name,list.cards);
-        return (this.renderCards(list.cards))
+        return (
+            <div className="list-container">
+                <p className="list-name">{list.name}</p>
+                {this.renderCards(list.cards)}
+            </div>
+        )
     }
 }
 

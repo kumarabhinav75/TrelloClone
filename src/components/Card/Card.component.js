@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './Card.css'
 
 class Card extends Component {
     constructor(props){
@@ -7,7 +8,12 @@ class Card extends Component {
 
     render(){
         const {card} = this.props;
-        console.log(card);
+        console.log('card');
+        return (
+            <div className="card" draggable>
+                <p>{card}</p>
+            </div>
+        )
     }
 }
 

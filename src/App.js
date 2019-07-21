@@ -25,10 +25,10 @@ class App extends Component {
   render() {
     return (
       <div>
-      <h1>
-        Trello
-      </h1>
-      <Board boardData={newBoard}/>
+        <h1>
+          Trello
+        </h1>
+        <Board boardData={newBoard}/>
       </div>
 
     );

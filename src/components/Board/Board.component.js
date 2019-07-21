@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import CardList from '../CardList/CardList.component';
+import './Board.css';
+
 
 class Board extends Component {
 
@@ -16,7 +18,11 @@ class Board extends Component {
 
     render() {
         const {boardData} = this.props;
-        return this.renderBoard(boardData)
+        return (
+            <div className="board-container">
+                {this.renderBoard(boardData)}
+            </div>
+        )
     }
 }
   
