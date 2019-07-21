@@ -11,14 +11,14 @@ class CardList extends Component {
 
     renderCards(cards){
         return cards.map((card,index) => {
-            return <Card card={card.text} key={index} />
+            return <Card card={card.text} key={index} handleCardDragStart={this.handleCardDragStart}/>
         })
     }
 
-    handleNewCard(key){
+    handleNewCard(listNumber){
         const payload = {
             "text": this.cardInput.current.value,
-            "listNo": this.props.listNumber
+            "listNo": listNumber
         }
         this.cardInput.current.value='';
         this.props.addCard(payload);
@@ -28,16 +28,24 @@ class CardList extends Component {
         return nextProps.list.length != this.props.list.length
     }
 
+    handleOnDragOver(listNumber){
+        console.log(listNumber)
+    }
+
+    handleCardDragStart(card){
+        console.log('card',card);
+    }
+
     render(){
-        const {list, listName} = this.props;
-        console.log(listName, 're-rendered!!!');
+        const {list, listName, listNumber} = this.props;
+        console.log(listNumber, 're-rendered!!!');
         return (
-            <div className="list-container">
+            <div className="droppable list-container" onDragOver={()=>this.handleOnDragOver(listNumber)} >
                 <p className="list-name">{listName}</p>
                 {this.renderCards(list)}
                 <div className="new-card">
                     <input type="text" ref={this.cardInput}></input>
-                    <button onClick={(key) => this.handleNewCard(key)}>Add card</button>
+                    <button onClick={(key) => this.handleNewCard(listNumber)}>Add card</button>
                 </div>
             </div>
         )

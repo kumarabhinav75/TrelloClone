@@ -7,9 +7,13 @@ class Card extends Component {
     }
 
     render(){
-        const {card} = this.props;
+        const {card,handleCardDragStart} = this.props;
         return (
-            <div className="card" draggable>
+            <div 
+                className="card" 
+                draggable
+                onDragStart={(e) => handleCardDragStart(e.target)}
+            >
                 <p>{card}</p>
             </div>
         )
