@@ -8,7 +8,7 @@ class CardList extends Component {
     };
 
     renderCards(cards){
-        // console.log(cards);
+                // console.log(cards);
         return cards.map((card,index) => {
             return <Card card={card.text} key={index} />
         })
