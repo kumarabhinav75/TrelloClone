@@ -21,6 +21,10 @@ class CardList extends Component {
             <div className="list-container">
                 <p className="list-name">{list.name}</p>
                 {this.renderCards(list.cards)}
+                <div className="new-card">
+                    <input type="text"></input>
+                    <button>Add card</button>
+                </div>
             </div>
         )
     }
