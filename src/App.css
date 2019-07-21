@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
+body {
+    background-color: rgb(0, 158, 0);
+    height: 100vh;
+    margin: 0px;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    background-color: rgba(1, 104, 1, 0.692);
+    margin: 0px;
+    color: white;
+    font-size: 40px;
+}
