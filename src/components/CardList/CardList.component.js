@@ -8,19 +8,20 @@ class CardList extends Component {
     };
 
     renderCards(cards){
-        return cards.map((card) => {
-            return <Card card={card} />
+        // console.log(cards);
+        return cards.map((card,index) => {
+            return <Card card={card.text} key={index} />
         })
     }
 
     render(){
-        const {list} = this.props;
-        console.log('yooo');
-        console.log(list.name,list.cards);
+        const {list, listName} = this.props;
+        // console.log('yooo');
+        console.log(list,listName);
         return (
             <div className="list-container">
-                <p className="list-name">{list.name}</p>
-                {this.renderCards(list.cards)}
+                <p className="list-name">{listName}</p>
+                {this.renderCards(list)}
                 <div className="new-card">
                     <input type="text"></input>
                     <button>Add card</button>

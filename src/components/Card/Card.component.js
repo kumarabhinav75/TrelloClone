@@ -8,7 +8,7 @@ class Card extends Component {
 
     render(){
         const {card} = this.props;
-        console.log('card');
+        // console.log('card');
         return (
             <div className="card" draggable>
                 <p>{card}</p>
