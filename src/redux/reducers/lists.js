@@ -1,4 +1,5 @@
-export const lists = (state = ["To do","In progress"], action) => {
+const initialState = ["To do","In progress"];
+export const lists = (state = [], action) => {
     switch (action.type) {
         case 'ADD_LIST':
             return [
