@@ -6,6 +6,7 @@
     background-color: rgb(182, 181, 181);
     padding: 5px;
     margin: 10px;
+    height: 100%;
 }
 
 .list-name {
@@ -25,4 +26,9 @@
     color: white;
     outline: none;
 
+}
+
+.new-card input {
+    border-radius: 15px;
+    outline: none;
 }
