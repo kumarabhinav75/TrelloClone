@@ -6,46 +6,62 @@ class CardList extends Component {
     constructor(props){
         super(props);
         this.cardInput = React.createRef();
-        this.handleNewCard = this.handleNewCard.bind(this);
+        // this.handleCardDragStart = this.handleCardDragStart.bind(this);
+        this.handleNewCardClick = this.handleNewCardClick.bind(this);
+        this.state = {
+            fromList: -1,
+            cardIndex: -1,
+            cardCount: -1
+        }
     };
 
     renderCards(cards){
         return cards.map((card,index) => {
-            return <Card card={card.text} key={index} handleCardDragStart={this.handleCardDragStart}/>
+            return <Card 
+                        card={card} 
+                        index={index} 
+                        key={index} 
+                        handleCardDragStart={this.handleCardDragStart}
+                        handleDragEnd={this.handleDragEnd}
+                        />
         })
-    }
-
-    handleNewCard(listNumber){
-        const payload = {
-            "text": this.cardInput.current.value,
-            "listNo": listNumber
-        }
-        this.cardInput.current.value='';
-        this.props.addCard(payload);
     }
 
     shouldComponentUpdate(nextProps){
         return nextProps.list.length != this.props.list.length
     }
 
-    handleOnDragOver(listNumber){
-        console.log(listNumber)
-    }
+    // handleDragEnd(){
+    //     // this.props.updateCard(this.state.cardIndex,this.state.fromList)
+    // }
 
-    handleCardDragStart(card){
-        console.log('card',card);
+    // handleCardDragStart (data,e){
+    //     console.log('data to save',data);
+    //     e.dataTransfer.setData("text/plain", JSON.stringify(data));
+    // }
+
+    handleNewCardClick(listNumber){
+        this.props.handleNewCard(listNumber,this.cardInput.current.value);
+        this.cardInput.current.value = '';
     }
 
     render(){
-        const {list, listName, listNumber} = this.props;
-        console.log(listNumber, 're-rendered!!!');
+        const {
+                list, 
+                listName, 
+                listNumber,
+                // handleOnDrop,
+                // handleOnDragOver,
+            } = this.props;
+
         return (
-            <div className="droppable list-container" onDragOver={()=>this.handleOnDragOver(listNumber)} >
+            <div className="list-container" 
+                >
                 <p className="list-name">{listName}</p>
                 {this.renderCards(list)}
                 <div className="new-card">
                     <input type="text" ref={this.cardInput}></input>
-                    <button onClick={(key) => this.handleNewCard(listNumber)}>Add card</button>
+                    <button onClick={() => this.handleNewCardClick(listNumber)}>Add card</button>
                 </div>
             </div>
         )

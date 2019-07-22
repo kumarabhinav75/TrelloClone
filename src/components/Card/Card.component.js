@@ -4,17 +4,34 @@ import './Card.css'
 class Card extends Component {
     constructor(props){
         super(props);
+        this.handleCardClick = this.handleCardClick.bind(this);
+        this.state = {
+            cardText : '',
+        }
+    }
+
+    handleCardClick(e){
+        console.log(e.target.innerHTML)
     }
 
     render(){
-        const {card,handleCardDragStart} = this.props;
+        const {
+                card,
+                // handleCardDragStart,
+                index,
+                // handleDragEnd
+            } = this.props;
+        const data = {index,listNo:card.listNo};
         return (
             <div 
                 className="card" 
-                draggable
-                onDragStart={(e) => handleCardDragStart(e.target)}
+                // draggable
+                // onDragStart={(e) => handleCardDragStart(data,e)}
+                // onDragEnd={()=>handleDragEnd()}
             >
-                <p>{card}</p>
+                <span className="content-editable" onClick={this.handleCardClick}>
+                    {card.text}
+                </span>
             </div>
         )
     }

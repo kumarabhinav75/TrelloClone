@@ -9,6 +9,12 @@ class Board extends Component {
         super(props);
         this.nameInput = React.createRef();
         this.handleNewList = this.handleNewList.bind(this);
+        this.handleNewCard = this.handleNewCard.bind(this);
+        // this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
+        // this.handleOnDragOver = this.handleOnDragOver.bind(this);
+        this.state = {
+            cardCount:0,
+        }
     }
 
     renderBoard(cardData,listNames){
@@ -20,7 +26,15 @@ class Board extends Component {
                 }
                 return copyArray;
             },[]);
-            return <CardList list={cards} listNumber={index+1} listName={list} key={index+1} addCard={this.props.addCard}/>
+            return <CardList 
+                        list={cards}
+                        listNumber={index+1} 
+                        listName={list} key={index+1} 
+                        handleNewCard={this.handleNewCard} //action
+                        updateCard={this.props.updateCardList} //action
+                        // handleOnDragEnd={this.handleOnDragEnd}
+                        // handleOnDragOver={this.handleOnDragOver}
+                        />
         });
     }
 
@@ -28,6 +42,40 @@ class Board extends Component {
         this.props.addList(this.nameInput.current.value);
         this.nameInput.current.value='';
     }
+
+    handleNewCard(listNumber, cardText){
+        const count = this.state.cardCount;
+        this.setState({
+            "cardCount": count+1
+        },() => {
+            const payload = {
+                "id": this.state.cardCount,
+                "text": cardText,
+                "listNo": listNumber
+            }
+            this.props.addCard(payload);
+        });
+    }
+
+    // handleOnDragEnd(listNumber,e){
+    //     const data = JSON.parse(e.dataTransfer.getData("text"));
+    //     const {index, listNo} = data;
+    //     console.log('newnew',data);
+    //     if(listNumber!==listNo){
+    //         console.log('yesyes');
+    //         // this.setState({
+    //         //     fromList: listNo,
+    //         //     cardIndex: index
+    //         // })
+    //     }
+    // }
+
+
+    // handleOnDragOver (e){
+    //     e.preventDefault();
+    // }
+
+
 
     render() {
         const { cardData, listNames} = this.props;
